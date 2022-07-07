@@ -8,6 +8,12 @@ fetch('https://petner.kr/api/v6/publics')
         const list = Object.assign({}, data);
         list2 = Object.assign({}, data);
         for (let i = 0; i < 10; i++) {
+            let image = "";
+            if(!list[i].petner.image) {
+                image = "https://petner.kr/images/img-default-user.png";
+            }else {
+                image = list[i].petner.image;
+            }
             const now = new Date();
             const created = new Date(list[i].created_at)
             const time = parseInt(Math.abs((now.getTime() - created.getTime()) / (1000 * 3600 * 24)));
@@ -15,12 +21,12 @@ fetch('https://petner.kr/api/v6/publics')
         <li class="card" id="card${i}">
                 <div class="card_container">
                     <div class="card_header">
-                        <img src="${list[i].petner.image}"
+                        <img src="${image}"
                             class="profile_img"></img>
                         <div class="header_name">
                             <p class="name">${list[i].petner.name}</p>
                             <div class="subname_container">
-                                <img src="${list[i].petner.image}"
+                                <img src="${image}"
                                     alt="subimg" class="subimg" />
                                 <p class="subname">전문펫시터</p>
                             </div>
@@ -171,6 +177,12 @@ $('#reload_btn').on('click', function () {
             const list = Object.assign({}, data);
             list2 = Object.assign({}, data);
             for (let i = 0; i < 10; i++) {
+                let image = "";
+                if(!list[i].petner.image) {
+                    image = "https://petner.kr/images/img-default-user.png";
+                }else {
+                    image = list[i].petner.image;
+                }
                 const now = new Date();
                 const created = new Date(list[i].created_at)
                 const time = parseInt(Math.abs((now.getTime() - created.getTime()) / (1000 * 3600 * 24)));
@@ -178,12 +190,12 @@ $('#reload_btn').on('click', function () {
     <li class="card" id="card${i}">
             <div class="card_container">
                 <div class="card_header">
-                    <img src="${list[i].petner.image}"
+                    <img src="${image}"
                         class="profile_img"></img>
                     <div class="header_name">
                         <p class="name">${list[i].petner.name}</p>
                         <div class="subname_container">
-                            <img src="${list[i].petner.image}"
+                            <img src="${image}"
                                 alt="subimg" class="subimg" />
                             <p class="subname">전문펫시터</p>
                         </div>
